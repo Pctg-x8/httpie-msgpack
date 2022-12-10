@@ -12,5 +12,6 @@ class MsgpackPlugin(ConverterPlugin):
         return 'msgpack' in mime
 
     def convert(self, body):
+        loaded = msgpack.loads(body, raw=False)
         return "application/json", \
-               json.dumps(msgpack.loads(body), encoding="unicode-escape", sort_keys=True)
+               json.dumps(loaded, sort_keys=True)
